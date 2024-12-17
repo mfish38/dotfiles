@@ -33,6 +33,15 @@ mkdir ~/bin
 
 pkg curl
 
+pkg fish
+
+# Node
+if ! [ -f ~/.nvm/nvm.sh ]; then
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+fi
+. ~/.nvm/nvm.sh
+nvm install 22
+
 # Neovim
 nvim_path=~/bin/nvim
 if ! [ -f "$nvim_path" ]; then
@@ -42,19 +51,28 @@ if ! [ -f "$nvim_path" ]; then
 fi
 
 # LazyVim deps
-pkg clang ripgrep fd-find fzf
+pkg clang fd-find fzf chafa ripgrep lua5.1 luarocks cargo python3-pip
+npm install -g neovim
+# TODO: https://github.com/LazyVim/LazyVim/discussions/3135
+# python3 -m pip install --user --upgrade pynvim
 
 install_font https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/ProggyClean.zip
 install_font https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/Gohu.zip
 
-# Cargo
-pkg cargo
-# TODO: add to .profile automatically:
-# PATH="$HOME/.cargo/bin:$PATH"
+pkg alacritty
 
-# Alacrity
-pkg cmake g++ pkg-config libfreetype6-dev libfontconfig1-dev libxcb-xfixes0-dev libxkbcommon-dev python3
-cargo install alacritty
+# Bun
+if ! command -v bun; then
+    curl -fsSL https://bun.sh/install | bash
+fi
+
+# LazyGit
+if ! command -v lazygit; then
+    LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | \grep -Po '"tag_name": *"v\K[^"]*')
+    curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
+    tar xf lazygit.tar.gz lazygit
+    sudo install lazygit -D -t ~/bin/
+fi
 
 # Stow
 pkg stow
