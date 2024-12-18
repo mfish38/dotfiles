@@ -50,15 +50,30 @@ if ! [ -f "$nvim_path" ]; then
     chmod u+x $nvim_path
 fi
 
-# LazyVim deps
-pkg clang fd-find fzf chafa ripgrep lua5.1 luarocks cargo python3-pip
-npm install -g neovim
-# TODO: https://github.com/LazyVim/LazyVim/discussions/3135
-# python3 -m pip install --user --upgrade pynvim
+# Setup python venvs
+mkdir ~/.venvs
+pkg python3-pip python3-venv
 
+if ! [ -f ~/.venvs/py3nvim ]; then
+    pushd ~/.venvs
+    python3 -m venv py3nvim
+    source ~/.venvs/py3nvim/bin/activate
+
+    python3 -m pip install --upgrade pynvim
+
+    deactivate
+    popd
+fi
+
+# LazyVim deps
+pkg clang fd-find fzf chafa ripgrep lua5.1 luarocks cargo
+npm install -g neovim
+
+# Fonts
 install_font https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/ProggyClean.zip
 install_font https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/Gohu.zip
 
+# Terminals
 pkg alacritty
 
 # Bun
