@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# # WSL
+# In order to use the git-credential-manager (recommended) you must install Git for windows to its default location.
+
 SCRIPT_DIR=$(dirname "$(readlink -f "$0")")
 
 function pkg() {
@@ -47,6 +50,10 @@ IN_WSL="${WSL_DISTRO_NAME:+1}"
 if [ -n "$IN_WSL" ]; then
     # Needed to run AppImages
     pkg libfuse2
+
+    # Setup git to use the Git for windows credential manager.
+    # https://learn.microsoft.com/en-us/windows/wsl/tutorials/wsl-git#git-credential-manager-setup
+    git config --global credential.helper "/mnt/c/Program\ Files/Git/mingw64/bin/git-credential-manager.exe"
 fi
 
 # Setup user bin folder. Note that on Ubuntu this will be on the path.
