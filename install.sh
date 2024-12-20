@@ -2,7 +2,6 @@
 
 SCRIPT_DIR=$(dirname "$(readlink -f "$0")")
 
-
 function pkg() {
     echo "Installing: $@"
 
@@ -26,7 +25,7 @@ function install_font() {
     popd
 }
 
-function ensure_venv(){
+function ensure_venv() {
     if ! [ -d "$HOME/.venvs/$1" ]; then
         pushd ~/.venvs
 
@@ -42,8 +41,13 @@ function ensure_venv(){
     deactivate
 }
 
-
 sudo apt update
+
+IN_WSL="${WSL_DISTRO_NAME:+1}"
+if [ -n "$IN_WSL" ]; then
+    # Needed to run AppImages
+    pkg libfuse2
+fi
 
 # Setup user bin folder. Note that on Ubuntu this will be on the path.
 # Note that if it did not exist, a re-login will be needed before it is added to the path
