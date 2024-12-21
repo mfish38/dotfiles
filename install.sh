@@ -91,7 +91,10 @@ ensure_venv py3nvim \
     pynvim
 
 # LazyVim deps
-pkg clang fd-find fzf chafa ripgrep lua5.1 luarocks cargo
+pkg clang fd-find fzf chafa ripgrep cargo
+
+pkg lua5.1 luarocks
+sudo luarocks install --lua-version 5.1 tiktoken_core
 
 pkg perl
 curl -L https://cpanmin.us | perl - --sudo App::cpanminus
@@ -100,7 +103,7 @@ sudo cpanm -n Neovim::Ext
 pkg ruby ruby-dev
 sudo gem install neovim
 
-npm install -g neovim
+npm install -g neovim prettier
 
 # Fonts
 install_font https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/ProggyClean.zip
