@@ -70,6 +70,11 @@ fi
 . ~/.nvm/nvm.sh
 nvm install 22
 
+# Bun
+if ! command -v bun; then
+    curl -fsSL https://bun.sh/install | bash
+fi
+
 # Neovim
 nvim_path=~/bin/nvim
 if ! [ -f "$nvim_path" ]; then
@@ -105,11 +110,6 @@ install_font https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/Go
 # Note that you do not typlically want to run the terminal inside WSL.
 if ! [ -v WSL_DISTRO_NAME ]; then
     pkg alacritty
-fi
-
-# Bun
-if ! command -v bun; then
-    curl -fsSL https://bun.sh/install | bash
 fi
 
 # LazyGit
