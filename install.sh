@@ -46,8 +46,7 @@ function ensure_venv() {
 
 sudo apt update
 
-IN_WSL="${WSL_DISTRO_NAME:+1}"
-if [ -n "$IN_WSL" ]; then
+if [ -v WSL_DISTRO_NAME ]; then
     # Needed to run AppImages
     pkg libfuse2
 
@@ -95,7 +94,10 @@ install_font https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/Pr
 install_font https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/Gohu.zip
 
 # Terminals
-pkg alacritty
+# Note that you do not typlically want to run the terminal inside WSL.
+if ! [ -v WSL_DISTRO_NAME ]; then
+    pkg alacritty
+fi
 
 # Bun
 if ! command -v bun; then
