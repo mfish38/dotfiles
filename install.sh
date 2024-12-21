@@ -97,7 +97,9 @@ pkg lua5.1 luarocks
 sudo luarocks install --lua-version 5.1 tiktoken_core
 
 pkg perl
-curl -L https://cpanmin.us | perl - --sudo App::cpanminus
+if ! command -v cpanm; then
+    curl -L https://cpanmin.us | perl - --sudo App::cpanminus
+fi
 sudo cpanm -n Neovim::Ext
 
 pkg ruby ruby-dev
