@@ -87,6 +87,14 @@ ensure_venv py3nvim \
 
 # LazyVim deps
 pkg clang fd-find fzf chafa ripgrep lua5.1 luarocks cargo
+
+pkg perl
+curl -L https://cpanmin.us | perl - --sudo App::cpanminus
+sudo cpanm -n Neovim::Ext
+
+pkg ruby ruby-dev
+sudo gem install neovim
+
 npm install -g neovim
 
 # Fonts
