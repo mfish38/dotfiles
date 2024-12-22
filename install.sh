@@ -11,6 +11,24 @@ function pkg() {
     sudo apt install -qy "$@"
 }
 
+function ensure_luarock() {
+    current=$(luarocks show --mversion "$1" 2>/dev/null)
+
+    if [ $? != 0 ]; then
+        sudo luarocks install --lua-version 5.1 "$1"
+
+        return 0
+    fi
+
+    latest=$(luarocks search --porcelain tiktoken_core | head -n 1 | cut -f 2)
+
+    if [ $current != $latest ]; then
+        sudo luarocks install --lua-version 5.1 "$1"
+
+        return 0
+    fi
+}
+
 function install_font() {
     mkdir -p ~/.local/share/fonts
     pushd ~/.local/share/fonts
@@ -45,6 +63,9 @@ function ensure_venv() {
 }
 
 sudo apt update
+sudo apt upgrade
+
+touch ~/.hushlogin
 
 if [ -v WSL_DISTRO_NAME ]; then
     # Needed to run AppImages
@@ -94,7 +115,7 @@ ensure_venv py3nvim \
 pkg clang fd-find fzf chafa ripgrep cargo
 
 pkg lua5.1 luarocks
-sudo luarocks install --lua-version 5.1 tiktoken_core
+ensure_luarock tiktoken_core
 
 pkg perl
 if ! command -v cpanm; then
