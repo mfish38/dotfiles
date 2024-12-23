@@ -1,5 +1,7 @@
 #!/bin/bash
 
+pushd ~/.dotfiles
+
 # # WSL
 # In order to use the git-credential-manager (recommended) you must install Git for windows to its default location.
 
@@ -62,6 +64,15 @@ function ensure_venv() {
     deactivate
 }
 
+function ensure_line() {
+    escaped="$(printf '%s' "$2" | sed 's/[.[\*^$]/\\&/g')"
+    if ! [ -z "$(grep "^$escaped\$" "$1")" ]; then
+        return 0
+    fi
+
+    echo "$2" >>$1
+}
+
 sudo apt update
 sudo apt upgrade
 
@@ -95,6 +106,14 @@ nvm install 22
 if ! command -v bun; then
     curl -fsSL https://bun.sh/install | bash
 fi
+
+# Go
+# rm -rf /usr/local/go
+if ! [ -d "/usr/local/go" ]; then
+    curl -LO https://go.dev/dl/go1.23.4.linux-amd64.tar.gz
+    sudo tar -C /usr/local -xzf go1.23.4.linux-amd64.tar.gz
+fi
+ensure_line ~/.profile "export PATH=\$PATH:/usr/local/go/bin"
 
 # Neovim
 nvim_path=~/bin/nvim
@@ -151,4 +170,6 @@ pkg stow
 pushd ~/.dotfiles
 stow nvim
 stow alacritty
+popd
+
 popd
