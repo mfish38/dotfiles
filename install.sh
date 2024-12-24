@@ -1,6 +1,6 @@
 #!/bin/bash
 
-pushd ~/.dotfiles
+pushd ~/.dotfiles || exit
 
 # # WSL
 # In order to use the git-credential-manager (recommended) you must install Git for windows to its default location.
@@ -8,14 +8,16 @@ pushd ~/.dotfiles
 SCRIPT_DIR=$(dirname "$(readlink -f "$0")")
 
 function pkg() {
-    echo "Installing: $@"
+    echo "Installing: $*"
 
     sudo apt install -qy "$@"
 }
 
 function ensure_luarock() {
+    local current
     current=$(luarocks show --mversion "$1" 2>/dev/null)
 
+    # shellcheck disable=SC2181
     if [ $? != 0 ]; then
         sudo luarocks install --lua-version 5.1 "$1"
 
@@ -24,7 +26,7 @@ function ensure_luarock() {
 
     latest=$(luarocks search --porcelain tiktoken_core | head -n 1 | cut -f 2)
 
-    if [ $current != $latest ]; then
+    if [ "$current" != "$latest" ]; then
         sudo luarocks install --lua-version 5.1 "$1"
 
         return 0
@@ -33,44 +35,46 @@ function ensure_luarock() {
 
 function install_font() {
     mkdir -p ~/.local/share/fonts
-    pushd ~/.local/share/fonts
+    pushd ~/.local/share/fonts || return 1
 
-    local font_zip=$(basename $1)
+    local font_zip
+    font_zip=$(basename "$1")
 
     if ! [ -f "$font_zip" ]; then
-        curl -LO $1
-        unzip $font_zip
+        curl -LO "$1"
+        unzip "$font_zip"
 
         # rebuild font cache
         fc-cache -f -v
     fi
 
-    popd
+    popd || return 1
 }
 
 function ensure_venv() {
     if ! [ -d "$HOME/.venvs/$1" ]; then
-        pushd ~/.venvs
+        pushd ~/.venvs || return 1
 
         python3 -m venv "$1"
 
-        popd
+        popd || return 1
     fi
 
+    # shellcheck source=/dev/null
     source "$HOME/.venvs/$1/bin/activate"
 
-    python3 -m pip install --upgrade ${@:2}
+    python3 -m pip install --upgrade "${@:2}"
 
     deactivate
 }
 
 function ensure_line() {
     escaped="$(printf '%s' "$2" | sed 's/[.[\*^$]/\\&/g')"
-    if ! [ -z "$(grep "^$escaped\$" "$1")" ]; then
+    if grep -q "^$escaped\$" "$1"; then
         return 0
     fi
 
-    echo "$2" >>$1
+    echo "$2" >>"$1"
 }
 
 sudo apt update
@@ -99,7 +103,8 @@ pkg fish
 if ! [ -f ~/.nvm/nvm.sh ]; then
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
 fi
-. ~/.nvm/nvm.sh
+# shellcheck source=/dev/null
+source ~/.nvm/nvm.sh
 nvm install 22
 
 # Bun
@@ -117,9 +122,9 @@ ensure_line ~/.profile "export PATH=\$PATH:/usr/local/go/bin"
 
 # Neovim
 nvim_path=~/bin/nvim
-if ! [ -f "$nvim_path" ]; then
-    curl --output-dir $SCRIPT_DIR -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
-    mv -f $SCRIPT_DIR/nvim.appimage $nvim_path
+if ! [ -f $nvim_path ]; then
+    curl --output-dir "$SCRIPT_DIR" -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
+    mv -f "$SCRIPT_DIR/nvim.appimage" $nvim_path
     chmod u+x $nvim_path
 fi
 
@@ -167,9 +172,9 @@ fi
 
 # Stow
 pkg stow
-pushd ~/.dotfiles
+pushd ~/.dotfiles || exit
 stow nvim
 stow alacritty
-popd
+popd || exit
 
-popd
+popd || exit
