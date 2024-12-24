@@ -7,12 +7,22 @@ pushd ~/.dotfiles || exit
 
 SCRIPT_DIR=$(dirname "$(readlink -f "$0")")
 
+#######################################
+# Installs a package using apt.
+# Arguments:
+#   List of Packages to install.
+#######################################
 function pkg() {
     echo "Installing: $*"
 
     sudo apt install -qy "$@"
 }
 
+#######################################
+# Ensures a luarock is installed.
+# Arguments:
+#   List of luarocks to install.
+#######################################
 function ensure_luarock() {
     local current
     current=$(luarocks show --mversion "$1" 2>/dev/null)
@@ -24,6 +34,7 @@ function ensure_luarock() {
         return 0
     fi
 
+    local latest
     latest=$(luarocks search --porcelain tiktoken_core | head -n 1 | cut -f 2)
 
     if [ "$current" != "$latest" ]; then
@@ -33,6 +44,11 @@ function ensure_luarock() {
     fi
 }
 
+#######################################
+# Installs a font.
+# Arguments:
+#   Url to download the font from.
+#######################################
 function install_font() {
     mkdir -p ~/.local/share/fonts
     pushd ~/.local/share/fonts || return 1
@@ -51,6 +67,12 @@ function install_font() {
     popd || return 1
 }
 
+#######################################
+# Creates a python venv if it does not exist. Also ensures that the packages are installed.
+# Arguments:
+#   Name of the venv.
+#   List of packages to install.
+#######################################
 function ensure_venv() {
     if ! [ -d "$HOME/.venvs/$1" ]; then
         pushd ~/.venvs || return 1
@@ -68,6 +90,12 @@ function ensure_venv() {
     deactivate
 }
 
+#######################################
+# Ensures that a given line is in a file. If not present, it will be added to the end.
+# Arguments:
+#   The file to check.
+#   The line to check/add.
+#######################################
 function ensure_line() {
     escaped="$(printf '%s' "$2" | sed 's/[.[\*^$]/\\&/g')"
     if grep -q "^$escaped\$" "$1"; then
