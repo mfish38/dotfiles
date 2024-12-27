@@ -21,7 +21,7 @@ function pkg() {
 #######################################
 # Ensures a luarock is installed.
 # Arguments:
-#   List of luarocks to install.
+#   The luarock to install.
 #######################################
 function ensure_luarock() {
     local current
@@ -35,7 +35,7 @@ function ensure_luarock() {
     fi
 
     local latest
-    latest=$(luarocks search --porcelain tiktoken_core | head -n 1 | cut -f 2)
+    latest=$(luarocks search --porcelain "$1" | head -n 1 | cut -f 2)
 
     if [ "$current" != "$latest" ]; then
         sudo luarocks install --lua-version 5.1 "$1"
