@@ -1,0 +1,9 @@
+/* https://support.mozilla.org/en-US/questions/1417387 */
+#TabsToolbar-customization-target {
+    visibility: collapse !important;
+}
+
+/* https://github.com/mbnuqw/sidebery/wiki/Firefox-Styles-Snippets-(via-userChrome.css) */
+#sidebar-header {
+    visibility: collapse !important;
+}
