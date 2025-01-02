@@ -198,6 +198,12 @@ if ! command -v lazygit; then
     sudo install lazygit -D -t ~/bin/
 fi
 
+# Chrome
+if ! command -v google-chrome; then
+    curl -LO https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+    pkg ./google-chrome-stable_current_amd64.deb
+fi
+
 # Stow
 pkg stow
 pushd ~/.dotfiles || exit
