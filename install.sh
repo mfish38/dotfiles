@@ -19,6 +19,50 @@ function pkg() {
 }
 
 #######################################
+# Downloads a file to the a downloads folder in the SCRIPT_DIR.
+# Arguments:
+#   URL to download
+# Outputs
+#   Writs the path to the downloaded file to stdout.
+#######################################
+function download() {
+    local downloads
+    downloads="$SCRIPT_DIR/downloads"
+
+    mkdir -p "$downloads"
+
+    curl --output-dir "$downloads" -LO "$1"
+
+    echo "$downloads/$(basename "$1")"
+}
+
+#######################################
+# Downloads and installs the given AppImage to the user's bin folder.
+#
+# Note that if the AppImage is already in the bin folder no action will be taken. Delete
+# the AppImage first to perform a reinstall/upgrade.
+#
+# Arguments:
+#   URL to the AppImage to download.
+#
+#   Name rename the AppImage to in the bin folder.
+#######################################
+function install_appimage() {
+    if [ -f ~/bin/"$2" ]; then
+        return 0
+    fi
+
+    local path
+    path=$(download "$1")
+
+    chmod u+x "$path"
+
+    mkdir -p ~/bin
+
+    mv "$path" ~/bin/"$2"
+}
+
+#######################################
 # Ensures a luarock is installed.
 # Arguments:
 #   The luarock to install.
@@ -71,6 +115,7 @@ function install_font() {
 # Creates a python venv if it does not exist. Also ensures that the packages are installed.
 # Arguments:
 #   Name of the venv.
+#
 #   List of packages to install.
 #######################################
 function ensure_venv() {
@@ -105,9 +150,36 @@ function ensure_line() {
     echo "$2" >>"$1"
 }
 
+#######################################
+# Installs a given version of node.
+# Arguments:
+#   The version of node to install.
+#######################################
+function install_node() {
+    # Install the node version manager if it is not present.
+    if ! [ -f ~/.nvm/nvm.sh ]; then
+        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+    fi
+
+    # shellcheck source=/dev/null
+    source ~/.nvm/nvm.sh
+
+    nvm install "$1"
+}
+
+# Setup user bin folder. Note that on Ubuntu this will be on the path.
+# Note that if it did not exist, a re-login/source of .profile will be needed before it is added to
+# the path
+mkdir ~/bin
+# shellcheck source=/dev/null
+source ~/.profile
+
 sudo apt update
 sudo apt upgrade
 
+pkg curl
+
+# Disable login banners in the shell.
 touch ~/.hushlogin
 
 if [ -v WSL_DISTRO_NAME ]; then
@@ -119,21 +191,10 @@ if [ -v WSL_DISTRO_NAME ]; then
     git config --global credential.helper "/mnt/c/Program\ Files/Git/mingw64/bin/git-credential-manager.exe"
 fi
 
-# Setup user bin folder. Note that on Ubuntu this will be on the path.
-# Note that if it did not exist, a re-login will be needed before it is added to the path
-mkdir ~/bin
-
-pkg curl
-
 pkg fish
 
 # Node
-if ! [ -f ~/.nvm/nvm.sh ]; then
-    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
-fi
-# shellcheck source=/dev/null
-source ~/.nvm/nvm.sh
-nvm install 22
+install_node 22
 
 # Bun
 if ! command -v bun; then
@@ -149,12 +210,7 @@ fi
 ensure_line ~/.profile "export PATH=\$PATH:/usr/local/go/bin"
 
 # Neovim
-nvim_path=~/bin/nvim
-if ! [ -f $nvim_path ]; then
-    curl --output-dir "$SCRIPT_DIR" -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
-    mv -f "$SCRIPT_DIR/nvim.appimage" $nvim_path
-    chmod u+x $nvim_path
-fi
+install_appimage "https://github.com/neovim/neovim/releases/latest/download/nvim.appimage" nvim
 
 # Setup python venvs
 mkdir ~/.venvs
@@ -164,7 +220,7 @@ ensure_venv py3nvim \
     pynvim
 
 # LazyVim deps
-pkg clang fd-find fzf chafa ripgrep cargo
+pkg clang fd-find fzf chafa ripgrep cargo lynx
 
 pkg lua5.1 luarocks
 ensure_luarock tiktoken_core
