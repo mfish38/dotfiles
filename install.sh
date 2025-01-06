@@ -38,17 +38,14 @@ function download() {
 
 #######################################
 # Downloads and installs the given AppImage to the user's bin folder.
-#
-# Note that if the AppImage is already in the bin folder no action will be taken. Delete
-# the AppImage first to perform a reinstall/upgrade.
-#
 # Arguments:
 #   URL to the AppImage to download.
 #
-#   Name rename the AppImage to in the bin folder.
+#   Name of the command to install as. If it already exists, no action will be taken.
 #######################################
 function install_appimage() {
-    if [ -f ~/bin/"$2" ]; then
+    if command -v "$2"; then
+        echo "Already installed: $2"
         return 0
     fi
 
@@ -58,8 +55,26 @@ function install_appimage() {
     chmod u+x "$path"
 
     mkdir -p ~/bin
-
     mv "$path" ~/bin/"$2"
+}
+
+#######################################
+# Downloads and installs the given deb package.
+# Arguments:
+#   URL to the deb package to download.
+#
+#   Name of the command that will be installed. If it already exists, no action will be taken.
+#######################################
+function install_deb() {
+    if command -v "$2"; then
+        echo "Already installed: $2"
+        return 0
+    fi
+
+    local path
+    path=$(download "$1")
+
+    pkg "$path"
 }
 
 #######################################
@@ -255,10 +270,10 @@ if ! command -v lazygit; then
 fi
 
 # Chrome
-if ! command -v google-chrome; then
-    curl -LO https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-    pkg ./google-chrome-stable_current_amd64.deb
-fi
+install_deb "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb" google-chrome
+
+# Discord
+# install_deb "https://stable.dl2.discordapp.net/apps/linux/0.0.78/discord-0.0.78.deb" discord
 
 # Stow
 pkg stow
