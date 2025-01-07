@@ -8,6 +8,15 @@ pushd ~/.dotfiles || exit
 SCRIPT_DIR=$(dirname "$(readlink -f "$0")")
 
 #######################################
+# Gets the latest release tag from a github repository.
+# Arguments:
+#   The user/repo url fragment of the project.
+#######################################
+function github_latest_release() {
+    curl -s "https://api.github.com/repos/$1/releases/latest" | jq -r '.tag_name'
+}
+
+#######################################
 # Installs a package using apt.
 # Arguments:
 #   List of Packages to install.
@@ -173,7 +182,9 @@ function ensure_line() {
 function install_node() {
     # Install the node version manager if it is not present.
     if ! [ -f ~/.nvm/nvm.sh ]; then
-        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+        local latest
+        latest=$(github_latest_release nvm-sh/nvm)
+        curl -o- "https://raw.githubusercontent.com/nvm-sh/nvm/$latest/install.sh" | bash
     fi
 
     # shellcheck source=/dev/null
