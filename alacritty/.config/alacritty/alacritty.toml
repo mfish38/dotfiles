@@ -4,3 +4,6 @@ size = 10.5
 
 # normal = { family = "ProggyClean Nerd Font Mono", style = "Regular" }
 # size = 12
+
+[window]
+dimensions = { columns = 120, lines = 100 }
