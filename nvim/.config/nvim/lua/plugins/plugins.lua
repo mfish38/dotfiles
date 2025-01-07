@@ -5,10 +5,4 @@ return {
     dependencies = { "MunifTanjim/nui.nvim" },
     opts = {},
   },
-  {
-    "zbirenbaum/copilot.lua",
-    opts = {
-      auto_trigger = false,
-    },
-  },
 }

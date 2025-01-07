@@ -7,3 +7,4 @@ vim.opt.shiftwidth = 4
 vim.opt.colorcolumn = "100"
 vim.g.python3_host_prog = "~/.venvs/py3nvim/bin/python"
 vim.g.python_host_prog = "~/.venvs/py3nvim/bin/python"
+vim.g.ai_cmp = false
