@@ -40,9 +40,10 @@ function download() {
 
     mkdir -p "$downloads"
 
-    curl --output-dir "$downloads" -LO "$1"
+    local path
+    path=$(wget --content-disposition -P "$downloads" "$1" |& grep -Po "(?<=^Saving to: ‘).*(?=’$)")
 
-    echo "$downloads/$(basename "$1")"
+    echo "$downloads/$(basename "$path")"
 }
 
 #######################################
@@ -193,6 +194,8 @@ function install_node() {
     nvm install "$1"
 }
 
+# github_latest_release "junegunn/fzf"
+
 # Setup user bin folder. Note that on Ubuntu this will be on the path.
 # Note that if it did not exist, a re-login/source of .profile will be needed before it is added to
 # the path
@@ -284,7 +287,12 @@ fi
 install_deb "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb" google-chrome
 
 # Discord
-# install_deb "https://stable.dl2.discordapp.net/apps/linux/0.0.78/discord-0.0.78.deb" discord
+if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
+    # Note that currently only the canary version works on Wayland for screen sharing.
+    install_deb "https://discord.com/api/download/canary?platform=linux&format=deb" discord-canary
+else
+    install_deb "https://discord.com/api/download?platform=linux&format=deb" discord
+fi
 
 # Stow
 pkg stow
