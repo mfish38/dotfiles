@@ -12,8 +12,35 @@ SCRIPT_DIR=$(dirname "$(readlink -f "$0")")
 # Arguments:
 #   The user/repo url fragment of the project.
 #######################################
-function github_latest_release() {
+function github_latest_tag() {
     curl -s "https://api.github.com/repos/$1/releases/latest" | jq -r '.tag_name'
+}
+
+#######################################
+# Gets the latest release asset from a github repo that matches a given regex.
+# Arguments:
+#   The user/repo url fragment of the project.
+#
+#   The regex to match the asset name against.
+#######################################
+function github_latest_asset() {
+    local jsonText
+    jsonText=$(curl -s "https://api.github.com/repos/$1/releases/latest")
+
+    local matches
+    matches=$(echo "$jsonText" | jq -r ".assets[] | select(.name | test(\"$2\")) | .browser_download_url")
+
+    if [ -z "$matches" ]; then
+        echo "Could not find an asset for $1 matching $2"
+        return 1
+    fi
+
+    if [ "$(echo "$matches" | wc -l)" != 1 ]; then
+        echo "Could not find a unique asset for $1 matching $2"
+        return 1
+    fi
+
+    echo "$matches"
 }
 
 #######################################
@@ -47,13 +74,13 @@ function download() {
 }
 
 #######################################
-# Downloads and installs the given AppImage to the user's bin folder.
+# Downloads and installs the given binary to the user's bin folder.
 # Arguments:
-#   URL to the AppImage to download.
+#   URL to the binary to download.
 #
 #   Name of the command to install as. If it already exists, no action will be taken.
 #######################################
-function install_appimage() {
+function install_binary() {
     if command -v "$2"; then
         echo "Already installed: $2"
         return 0
@@ -184,7 +211,7 @@ function install_node() {
     # Install the node version manager if it is not present.
     if ! [ -f ~/.nvm/nvm.sh ]; then
         local latest
-        latest=$(github_latest_release nvm-sh/nvm)
+        latest=$(github_latest_tag nvm-sh/nvm)
         curl -o- "https://raw.githubusercontent.com/nvm-sh/nvm/$latest/install.sh" | bash
     fi
 
@@ -193,8 +220,6 @@ function install_node() {
 
     nvm install "$1"
 }
-
-# github_latest_release "junegunn/fzf"
 
 # Setup user bin folder. Note that on Ubuntu this will be on the path.
 # Note that if it did not exist, a re-login/source of .profile will be needed before it is added to
@@ -239,7 +264,7 @@ fi
 ensure_line ~/.profile "export PATH=\$PATH:/usr/local/go/bin"
 
 # Neovim
-install_appimage "https://github.com/neovim/neovim/releases/latest/download/nvim.appimage" nvim
+install_binary "https://github.com/neovim/neovim/releases/latest/download/nvim.appimage" nvim
 
 # Setup python venvs
 mkdir ~/.venvs
@@ -249,7 +274,16 @@ ensure_venv py3nvim \
     pynvim
 
 # LazyVim deps
-pkg clang fd-find fzf chafa ripgrep cargo lynx
+pkg clang fd-find chafa ripgrep cargo lynx
+
+# fzf
+# Install newer veresion of fzf than is available in the package manager.
+if ! command -v fzf; then
+    url="$(github_latest_asset "junegunn/fzf" 'linux_amd64\\.tar\\.gz')"
+    path=$(download "$url")
+
+    tar -C ~/bin -xzf "$path"
+fi
 
 pkg lua5.1 luarocks
 ensure_luarock tiktoken_core
