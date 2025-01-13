@@ -328,6 +328,9 @@ else
     install_deb "https://discord.com/api/download?platform=linux&format=deb" discord
 fi
 
+# VS Code
+install_deb "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64" code
+
 # Stow
 pkg stow
 pushd ~/.dotfiles || exit
