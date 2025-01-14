@@ -347,6 +347,9 @@ pushd ~/.dotfiles || exit
 stow --adopt vscode
 popd || exit
 
+# Obsidian
+install_deb "$(github_latest_asset "obsidianmd/obsidian-releases" 'amd64\\.deb')" obsidian
+
 # Stow
 pushd ~/.dotfiles || exit
 stow nvim
