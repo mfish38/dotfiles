@@ -231,7 +231,7 @@ source ~/.profile
 sudo apt update
 sudo apt upgrade
 
-pkg curl
+pkg curl stow
 
 # Disable login banners in the shell.
 touch ~/.hushlogin
@@ -331,12 +331,26 @@ fi
 # VS Code
 install_deb "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64" code
 
+# Install extensions, also ensures config directory is created so whole directory is not symlinked
+# by stow.
+extensions="
+vscodevim.vim
+plievone.vscode-template-literal-editor
+"
+for extension in $extensions; do
+    code --install-extension "$extension"
+done
+
+# Stow the user settings, but if it already exists, overwrite the .dotfiles repo version so it can
+# be merged/reverted.
+pushd ~/.dotfiles || exit
+stow --adopt vscode
+popd || exit
+
 # Stow
-pkg stow
 pushd ~/.dotfiles || exit
 stow nvim
 stow alacritty
-stow --adopt vscode
 popd || exit
 
 popd || exit
