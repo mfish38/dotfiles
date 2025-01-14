@@ -336,6 +336,7 @@ pkg stow
 pushd ~/.dotfiles || exit
 stow nvim
 stow alacritty
+stow --adopt vscode
 popd || exit
 
 popd || exit
