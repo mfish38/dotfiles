@@ -1,7 +1,5 @@
 #!/bin/bash
 
-pushd ~/.dotfiles || exit
-
 # # WSL
 # In order to use the git-credential-manager (recommended) you must install Git for windows to its default location.
 
@@ -220,6 +218,8 @@ function install_node() {
 
     nvm install "$1"
 }
+
+pushd ~/.dotfiles || exit
 
 # Setup user bin folder. Note that on Ubuntu this will be on the path.
 # Note that if it did not exist, a re-login/source of .profile will be needed before it is added to
