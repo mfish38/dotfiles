@@ -219,8 +219,6 @@ function install_node() {
     nvm install "$1"
 }
 
-pushd ~/.dotfiles || exit
-
 # Setup user bin folder. Note that on Ubuntu this will be on the path.
 # Note that if it did not exist, a re-login/source of .profile will be needed before it is added to
 # the path
@@ -354,6 +352,4 @@ install_deb "$(github_latest_asset "obsidianmd/obsidian-releases" 'amd64\\.deb')
 pushd ~/.dotfiles || exit
 stow nvim
 stow alacritty
-popd || exit
-
 popd || exit
