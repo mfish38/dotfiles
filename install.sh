@@ -373,6 +373,21 @@ fi
 
 pkg docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
+# WezTerm
+
+# Get the gpg key if it is not already present.
+if ! [ -f /etc/apt/keyrings/wezterm-fury.gpg ]; then
+    curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /etc/apt/keyrings/wezterm-fury.gpg
+fi
+
+# Add the repository to Apt sources:
+if ! [ -f /etc/apt/sources.list.d/wezterm.list ]; then
+    echo 'deb [signed-by=/etc/apt/keyrings/wezterm-fury.gpg] https://apt.fury.io/wez/ * *' | sudo tee /etc/apt/sources.list.d/wezterm.list
+    sudo apt-get update
+fi
+
+pkg wezterm
+
 # Stow
 pushd ~/.dotfiles || exit
 stow nvim
