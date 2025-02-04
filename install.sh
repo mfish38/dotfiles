@@ -220,7 +220,6 @@ function install_node() {
     source ~/.nvm/nvm.sh
 
     nvm install "$1"
-    npm install --global yarn
 }
 
 # Setup user bin folder. Note that on Ubuntu this will be on the path.
@@ -251,6 +250,7 @@ pkg fish
 
 # Node
 install_node 22
+npm install --global yarn
 
 # Bun
 if ! command -v bun; then
