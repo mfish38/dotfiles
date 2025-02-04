@@ -220,6 +220,7 @@ function install_node() {
     source ~/.nvm/nvm.sh
 
     nvm install "$1"
+    npm install --global yarn
 }
 
 # Setup user bin folder. Note that on Ubuntu this will be on the path.
@@ -392,4 +393,5 @@ pkg wezterm
 pushd ~/.dotfiles || exit
 stow nvim
 stow alacritty
+stow WezTerm
 popd || exit
