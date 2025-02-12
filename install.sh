@@ -338,6 +338,7 @@ install_deb "https://code.visualstudio.com/sha/download?build=stable&os=linux-de
 extensions="
 vscodevim.vim
 plievone.vscode-template-literal-editor
+ms-azuretools.vscode-docker
 "
 for extension in $extensions; do
     code --install-extension "$extension"
@@ -373,6 +374,9 @@ if ! [ -f /etc/apt/sources.list.d/docker.list ]; then
 fi
 
 pkg docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+sudo groupadd docker
+sudo usermod -aG docker "$USER"
 
 # WezTerm
 
