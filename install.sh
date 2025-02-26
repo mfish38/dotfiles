@@ -339,6 +339,9 @@ extensions="
 vscodevim.vim
 plievone.vscode-template-literal-editor
 ms-azuretools.vscode-docker
+talhabalaj.actual-font-changer
+vue.volar
+nuxtr.nuxt-vscode-extentions
 "
 for extension in $extensions; do
     code --install-extension "$extension"

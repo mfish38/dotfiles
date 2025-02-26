@@ -1,3 +1,7 @@
+
+[shell]
+program = "/usr/bin/fish"
+
 [font]
 normal = { family = "GohuFont14 Nerd Font Mono", style = "Regular" }
 size = 10.5
