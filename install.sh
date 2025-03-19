@@ -342,6 +342,11 @@ ms-azuretools.vscode-docker
 talhabalaj.actual-font-changer
 vue.volar
 nuxtr.nuxt-vscode-extentions
+streetsidesoftware.code-spell-checker
+mechatroner.rainbow-csv
+oderwat.indent-rainbow
+esbenp.prettier-vscode
+ionutvmi.path-autocomplete
 "
 for extension in $extensions; do
     code --install-extension "$extension"
