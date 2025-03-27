@@ -13,5 +13,5 @@
   "editor.gotoLocation.multipleDefinitions": "goto",
   "git.confirmSync": false,
   "git.autofetch": true,
-  "editor.renderWhitespace": "all"
+  "editor.renderWhitespace": "none"
 }

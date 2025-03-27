@@ -323,12 +323,7 @@ fi
 install_deb "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb" google-chrome
 
 # Discord
-if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
-    # Note that currently only the canary version works on Wayland for screen sharing.
-    install_deb "https://discord.com/api/download/canary?platform=linux&format=deb" discord-canary
-else
-    install_deb "https://discord.com/api/download?platform=linux&format=deb" discord
-fi
+install_deb "https://discord.com/api/download?platform=linux&format=deb" discord
 
 # VS Code
 install_deb "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64" code
