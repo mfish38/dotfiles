@@ -1,17 +1,26 @@
 {
   "workbench.tree.renderIndentGuides": "always",
+  "workbench.tree.indent": 16,
   "editor.rulers": [100],
   "editor.fontFamily": "GohuFont uni14 Nerd Font Mono",
-  "workbench.tree.indent": 16,
   "editor.lineNumbers": "relative",
-  "vim.useSystemClipboard": true,
-  "vim.easymotion": true,
   "editor.formatOnSave": true,
-  "[vue]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
   "editor.gotoLocation.multipleDefinitions": "goto",
+  "editor.renderWhitespace": "none",
   "git.confirmSync": false,
   "git.autofetch": true,
-  "editor.renderWhitespace": "none"
+  "vim.useSystemClipboard": true,
+  "vim.easymotion": true,
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": ["<C-p>"],
+      "commands": ["workbench.action.quickOpen"]
+    }
+  ],
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[vue]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }

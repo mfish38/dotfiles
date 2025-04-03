@@ -342,6 +342,7 @@ mechatroner.rainbow-csv
 oderwat.indent-rainbow
 esbenp.prettier-vscode
 ionutvmi.path-autocomplete
+ms-vsliveshare.vsliveshare
 "
 for extension in $extensions; do
     code --install-extension "$extension"
