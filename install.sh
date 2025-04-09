@@ -343,6 +343,7 @@ oderwat.indent-rainbow
 esbenp.prettier-vscode
 ionutvmi.path-autocomplete
 ms-vsliveshare.vsliveshare
+bradlc.vscode-tailwindcss
 "
 for extension in $extensions; do
     code --install-extension "$extension"
