@@ -9,12 +9,56 @@
   "editor.renderWhitespace": "none",
   "git.confirmSync": false,
   "git.autofetch": true,
-  "vim.useSystemClipboard": true,
-  "vim.easymotion": true,
   "vim.normalModeKeyBindingsNonRecursive": [
     {
       "before": ["<C-p>"],
       "commands": ["workbench.action.quickOpen"]
+    },
+    {
+      "before": ["j"],
+      "after": ["g", "j"]
+    },
+    {
+      "before": ["k"],
+      "after": ["g", "k"]
+    },
+    {
+      "before": ["0"],
+      "after": ["g", "0"]
+    },
+    {
+      "before": ["^"],
+      "after": ["g", "^"]
+    },
+    {
+      "before": ["$"],
+      "after": ["g", "$"]
+    }
+  ],
+  "vim.visualModeKeyBindingsNonRecursive": [
+    {
+      "before": ["<C-p>"],
+      "commands": ["workbench.action.quickOpen"]
+    },
+    {
+      "before": ["j"],
+      "after": ["g", "j"]
+    },
+    {
+      "before": ["k"],
+      "after": ["g", "k"]
+    },
+    {
+      "before": ["0"],
+      "after": ["g", "0"]
+    },
+    {
+      "before": ["^"],
+      "after": ["g", "^"]
+    },
+    {
+      "before": ["$"],
+      "after": ["g", "$"]
     }
   ],
   "[jsonc]": {
@@ -24,6 +68,9 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[css]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   }
 }
