@@ -344,6 +344,10 @@ esbenp.prettier-vscode
 ionutvmi.path-autocomplete
 ms-vsliveshare.vsliveshare
 bradlc.vscode-tailwindcss
+gruntfuggly.todo-tree
+dbaeumer.vscode-eslint
+bierner.github-markdown-preview
+saeris.markdown-github-alerts
 "
 for extension in $extensions; do
     code --install-extension "$extension"
