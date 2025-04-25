@@ -348,6 +348,7 @@ gruntfuggly.todo-tree
 dbaeumer.vscode-eslint
 bierner.github-markdown-preview
 saeris.markdown-github-alerts
+catppuccin.catppuccin-vsc-pack
 "
 for extension in $extensions; do
     code --install-extension "$extension"
