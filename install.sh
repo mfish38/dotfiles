@@ -349,6 +349,8 @@ dbaeumer.vscode-eslint
 bierner.github-markdown-preview
 saeris.markdown-github-alerts
 catppuccin.catppuccin-vsc-pack
+stuart.unique-window-colors
+murloccra4ler.leap
 "
 for extension in $extensions; do
     code --install-extension "$extension"

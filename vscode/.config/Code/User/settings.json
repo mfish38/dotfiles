@@ -33,6 +33,14 @@
     {
       "before": ["$"],
       "after": ["g", "$"]
+    },
+    {
+      "before": ["s"],
+      "commands": ["leap.findForward"]
+    },
+    {
+      "before": ["S"],
+      "commands": ["leap.findBackward"]
     }
   ],
   "vim.visualModeKeyBindingsNonRecursive": [
@@ -73,7 +81,33 @@
   "[css]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "cSpell.userWords": ["nuxi", "nuxt", "rrglobal"],
+  "cSpell.userWords": [
+    "lucide",
+    "nuxi",
+    "nuxt",
+    "rrblue",
+    "rrcoblue",
+    "rrglobal",
+    "rrgray",
+    "rrgreen",
+    "rrmagenta",
+    "rrorange",
+    "rrpurple",
+    "rrred",
+    "rrteal",
+    "rryellow"
+  ],
   "workbench.iconTheme": "catppuccin-macchiato",
-  "workbench.colorTheme": "Catppuccin Macchiato"
+  "workbench.colorTheme": "Catppuccin Macchiato",
+  "catppuccin.italicComments": false,
+  "catppuccin.italicKeywords": false,
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "git.replaceTagsWhenPull": true,
+  "window.titleBarStyle": "native",
+  "window.menuBarVisibility": "visible",
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }
