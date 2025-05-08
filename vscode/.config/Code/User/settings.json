@@ -109,5 +109,8 @@
   "window.menuBarVisibility": "visible",
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  },
+  "leap.whiteSpacesOnlyMatchNewLine": true,
+  "editor.autoClosingBrackets": "never",
+  "editor.autoClosingQuotes": "never"
 }

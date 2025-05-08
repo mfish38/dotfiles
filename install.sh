@@ -351,6 +351,7 @@ saeris.markdown-github-alerts
 catppuccin.catppuccin-vsc-pack
 stuart.unique-window-colors
 murloccra4ler.leap
+yoavbls.pretty-ts-errors
 "
 for extension in $extensions; do
     code --install-extension "$extension"
