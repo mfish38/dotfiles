@@ -7,8 +7,12 @@
   "editor.formatOnSave": true,
   "editor.gotoLocation.multipleDefinitions": "goto",
   "editor.renderWhitespace": "none",
+  "editor.autoClosingBrackets": "never",
+  "editor.autoClosingQuotes": "never",
+  "editor.wordWrapColumn": 100,
   "git.confirmSync": false,
   "git.autofetch": true,
+  "git.replaceTagsWhenPull": true,
   "vim.normalModeKeyBindingsNonRecursive": [
     {
       "before": ["<C-p>"],
@@ -95,7 +99,8 @@
     "rrpurple",
     "rrred",
     "rrteal",
-    "rryellow"
+    "rryellow",
+    "sfdark"
   ],
   "workbench.iconTheme": "catppuccin-macchiato",
   "workbench.colorTheme": "Catppuccin Macchiato",
@@ -104,13 +109,16 @@
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "git.replaceTagsWhenPull": true,
   "window.titleBarStyle": "native",
   "window.menuBarVisibility": "visible",
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "leap.whiteSpacesOnlyMatchNewLine": true,
-  "editor.autoClosingBrackets": "never",
-  "editor.autoClosingQuotes": "never"
+  "[markdown]": {
+    "editor.wordWrap": "wordWrapColumn"
+  },
+  "[mdc]": {
+    "editor.wordWrap": "wordWrapColumn"
+  }
 }
