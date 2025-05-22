@@ -87,6 +87,7 @@
   },
   "cSpell.userWords": [
     "lucide",
+    "msal",
     "nuxi",
     "nuxt",
     "rrblue",
@@ -120,5 +121,7 @@
   },
   "[mdc]": {
     "editor.wordWrap": "wordWrapColumn"
-  }
+  },
+  "editor.acceptSuggestionOnCommitCharacter": false,
+  "git.blame.editorDecoration.enabled": true
 }
