@@ -248,6 +248,20 @@ fi
 
 pkg fish
 
+# krohnkite
+# TODO: check if kde is installed
+# https://github.com/anametologin/krohnkite
+if ! kpackagetool6 -t KWin/Script -s krohnkite; then
+    url="$(github_latest_asset "anametologin/krohnkite" 'krohnkite-.+\\.kwinscript')"
+    path=$(download "$url")
+    kpackagetool6 -t KWin/Script -i "$path"
+    rm "$path"
+
+    # TODO: enable programmatically
+    # TODO: map meta+d to decrease, meta+l to focus right
+
+fi
+
 # Node
 install_node 22
 npm install --global yarn
@@ -349,9 +363,9 @@ dbaeumer.vscode-eslint
 bierner.github-markdown-preview
 saeris.markdown-github-alerts
 catppuccin.catppuccin-vsc-pack
-stuart.unique-window-colors
 murloccra4ler.leap
 yoavbls.pretty-ts-errors
+ms-vscode.vscode-speech
 "
 for extension in $extensions; do
     code --install-extension "$extension"

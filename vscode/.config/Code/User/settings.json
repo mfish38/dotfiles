@@ -1,22 +1,35 @@
 {
   "workbench.tree.renderIndentGuides": "always",
   "workbench.tree.indent": 16,
-  "editor.rulers": [100],
-  "editor.fontFamily": "GohuFont uni14 Nerd Font Mono",
+  "workbench.iconTheme": "catppuccin-macchiato",
+  "workbench.colorTheme": "Catppuccin Macchiato",
+  "catppuccin.italicComments": false,
+  "catppuccin.italicKeywords": false,
+  "editor.rulers": [88],
+  "editor.wordWrapColumn": 88,
+  "editor.fontFamily": "ProggyClean Nerd Font Mono",
   "editor.lineNumbers": "relative",
   "editor.formatOnSave": true,
   "editor.gotoLocation.multipleDefinitions": "goto",
   "editor.renderWhitespace": "none",
   "editor.autoClosingBrackets": "never",
   "editor.autoClosingQuotes": "never",
-  "editor.wordWrapColumn": 100,
+  "editor.acceptSuggestionOnCommitCharacter": false,
+  "editor.fontSize": 16,
+  "editor.lineHeight": 1.1,
   "git.confirmSync": false,
   "git.autofetch": true,
   "git.replaceTagsWhenPull": true,
+  "git.blame.editorDecoration.enabled": true,
+  "terminal.integrated.fontSize": 16,
   "vim.normalModeKeyBindingsNonRecursive": [
     {
       "before": ["<C-p>"],
       "commands": ["workbench.action.quickOpen"]
+    },
+    {
+      "before": ["<C-b>"],
+      "commands": ["workbench.action.toggleSidebarVisibility"]
     },
     {
       "before": ["j"],
@@ -51,6 +64,10 @@
     {
       "before": ["<C-p>"],
       "commands": ["workbench.action.quickOpen"]
+    },
+    {
+      "before": ["<C-b>"],
+      "commands": ["workbench.action.toggleSidebarVisibility"]
     },
     {
       "before": ["j"],
@@ -90,6 +107,7 @@
     "msal",
     "nuxi",
     "nuxt",
+    "nuxtui",
     "rrblue",
     "rrcoblue",
     "rrglobal",
@@ -101,17 +119,14 @@
     "rrred",
     "rrteal",
     "rryellow",
-    "sfdark"
+    "sfdark",
+    "sfnuxtlayer"
   ],
-  "workbench.iconTheme": "catppuccin-macchiato",
-  "workbench.colorTheme": "Catppuccin Macchiato",
-  "catppuccin.italicComments": false,
-  "catppuccin.italicKeywords": false,
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "window.titleBarStyle": "native",
-  "window.menuBarVisibility": "visible",
+  "window.menuBarVisibility": "toggle",
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
@@ -121,7 +136,5 @@
   },
   "[mdc]": {
     "editor.wordWrap": "wordWrapColumn"
-  },
-  "editor.acceptSuggestionOnCommitCharacter": false,
-  "git.blame.editorDecoration.enabled": true
+  }
 }
