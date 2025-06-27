@@ -366,6 +366,8 @@ catppuccin.catppuccin-vsc-pack
 murloccra4ler.leap
 yoavbls.pretty-ts-errors
 ms-vscode.vscode-speech
+lucafalasco.matcha
+lucafalasco.matchalk
 "
 for extension in $extensions; do
     code --install-extension "$extension"

@@ -1,13 +1,16 @@
 {
   "workbench.tree.renderIndentGuides": "always",
   "workbench.tree.indent": 16,
-  "workbench.iconTheme": "catppuccin-macchiato",
-  "workbench.colorTheme": "Catppuccin Macchiato",
   "catppuccin.italicComments": false,
   "catppuccin.italicKeywords": false,
   "editor.rulers": [88],
   "editor.wordWrapColumn": 88,
-  "editor.fontFamily": "ProggyClean Nerd Font Mono",
+  // "editor.fontFamily": "ProggyClean Nerd Font Mono",
+  // "editor.fontSize": 16,
+  // "editor.lineHeight": 1.1,
+  // "terminal.integrated.fontSize": 16,
+  "editor.fontFamily": "GohuFont uni14 Nerd Font Mono",
+  "editor.fontSize": 14,
   "editor.lineNumbers": "relative",
   "editor.formatOnSave": true,
   "editor.gotoLocation.multipleDefinitions": "goto",
@@ -15,13 +18,10 @@
   "editor.autoClosingBrackets": "never",
   "editor.autoClosingQuotes": "never",
   "editor.acceptSuggestionOnCommitCharacter": false,
-  "editor.fontSize": 16,
-  "editor.lineHeight": 1.1,
   "git.confirmSync": false,
   "git.autofetch": true,
   "git.replaceTagsWhenPull": true,
   "git.blame.editorDecoration.enabled": true,
-  "terminal.integrated.fontSize": 16,
   "vim.normalModeKeyBindingsNonRecursive": [
     {
       "before": ["<C-p>"],
@@ -103,6 +103,8 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "cSpell.userWords": [
+    "Dont",
+    "ilike",
     "lucide",
     "msal",
     "nuxi",
@@ -136,5 +138,7 @@
   },
   "[mdc]": {
     "editor.wordWrap": "wordWrapColumn"
-  }
+  },
+  "github.copilot.nextEditSuggestions.enabled": true,
+  "workbench.colorTheme": "Matchalk"
 }
