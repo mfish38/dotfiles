@@ -1,107 +1,30 @@
 {
-  "workbench.tree.renderIndentGuides": "always",
-  "workbench.tree.indent": 16,
-  "catppuccin.italicComments": false,
-  "catppuccin.italicKeywords": false,
-  "editor.rulers": [88],
-  "editor.wordWrapColumn": 88,
-  // "editor.fontFamily": "ProggyClean Nerd Font Mono",
-  // "editor.fontSize": 16,
-  // "editor.lineHeight": 1.1,
-  // "terminal.integrated.fontSize": 16,
-  "editor.fontFamily": "GohuFont uni14 Nerd Font Mono",
-  "editor.fontSize": 14,
-  "editor.lineNumbers": "relative",
-  "editor.formatOnSave": true,
-  "editor.gotoLocation.multipleDefinitions": "goto",
-  "editor.renderWhitespace": "none",
-  "editor.autoClosingBrackets": "never",
-  "editor.autoClosingQuotes": "never",
-  "editor.acceptSuggestionOnCommitCharacter": false,
-  "git.confirmSync": false,
-  "git.autofetch": true,
-  "git.replaceTagsWhenPull": true,
-  "git.blame.editorDecoration.enabled": true,
-  "vim.normalModeKeyBindingsNonRecursive": [
-    {
-      "before": ["<C-p>"],
-      "commands": ["workbench.action.quickOpen"]
-    },
-    {
-      "before": ["<C-b>"],
-      "commands": ["workbench.action.toggleSidebarVisibility"]
-    },
-    {
-      "before": ["j"],
-      "after": ["g", "j"]
-    },
-    {
-      "before": ["k"],
-      "after": ["g", "k"]
-    },
-    {
-      "before": ["0"],
-      "after": ["g", "0"]
-    },
-    {
-      "before": ["^"],
-      "after": ["g", "^"]
-    },
-    {
-      "before": ["$"],
-      "after": ["g", "$"]
-    },
-    {
-      "before": ["s"],
-      "commands": ["leap.findForward"]
-    },
-    {
-      "before": ["S"],
-      "commands": ["leap.findBackward"]
-    }
-  ],
-  "vim.visualModeKeyBindingsNonRecursive": [
-    {
-      "before": ["<C-p>"],
-      "commands": ["workbench.action.quickOpen"]
-    },
-    {
-      "before": ["<C-b>"],
-      "commands": ["workbench.action.toggleSidebarVisibility"]
-    },
-    {
-      "before": ["j"],
-      "after": ["g", "j"]
-    },
-    {
-      "before": ["k"],
-      "after": ["g", "k"]
-    },
-    {
-      "before": ["0"],
-      "after": ["g", "0"]
-    },
-    {
-      "before": ["^"],
-      "after": ["g", "^"]
-    },
-    {
-      "before": ["$"],
-      "after": ["g", "$"]
-    }
-  ],
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
   "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[markdown]": {
+    "editor.wordWrap": "wordWrapColumn"
+  },
+  "[mdc]": {
+    "editor.wordWrap": "wordWrapColumn"
+  },
+  "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[vue]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[css]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
+  "catppuccin.italicComments": false,
+  "catppuccin.italicKeywords": false,
   "cSpell.userWords": [
     "Dont",
     "ilike",
@@ -124,21 +47,98 @@
     "sfdark",
     "sfnuxtlayer"
   ],
-  "[json]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "window.titleBarStyle": "native",
-  "window.menuBarVisibility": "toggle",
-  "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "leap.whiteSpacesOnlyMatchNewLine": true,
-  "[markdown]": {
-    "editor.wordWrap": "wordWrapColumn"
-  },
-  "[mdc]": {
-    "editor.wordWrap": "wordWrapColumn"
-  },
+  "editor.acceptSuggestionOnCommitCharacter": false,
+  "editor.autoClosingBrackets": "never",
+  "editor.autoClosingQuotes": "never",
+  // "editor.fontFamily": "ProggyClean Nerd Font Mono",
+  // "editor.fontSize": 16,
+  // "editor.lineHeight": 1.1,
+  // "terminal.integrated.fontSize": 16,
+  "editor.fontFamily": "GohuFont uni14 Nerd Font Mono",
+  "editor.fontSize": 14,
+  "editor.formatOnSave": true,
+  "editor.gotoLocation.multipleDefinitions": "goto",
+  "editor.lineNumbers": "relative",
+  "editor.renderWhitespace": "none",
+  "editor.rulers": [88],
+  "editor.wordWrapColumn": 88,
+  "git.autofetch": true,
+  "git.blame.editorDecoration.enabled": true,
+  "git.confirmSync": false,
+  "git.replaceTagsWhenPull": true,
   "github.copilot.nextEditSuggestions.enabled": true,
-  "workbench.colorTheme": "Matchalk"
+  "leap.whiteSpacesOnlyMatchNewLine": true,
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": ["<C-p>"],
+      "commands": ["workbench.action.quickOpen"]
+    },
+    {
+      "before": ["<C-b>"],
+      "commands": ["workbench.action.toggleSidebarVisibility"]
+    },
+    {
+      "after": ["g", "j"],
+      "before": ["j"]
+    },
+    {
+      "after": ["g", "k"],
+      "before": ["k"]
+    },
+    {
+      "after": ["g", "0"],
+      "before": ["0"]
+    },
+    {
+      "after": ["g", "^"],
+      "before": ["^"]
+    },
+    {
+      "after": ["g", "$"],
+      "before": ["$"]
+    },
+    {
+      "before": ["s"],
+      "commands": ["leap.findForward"]
+    },
+    {
+      "before": ["S"],
+      "commands": ["leap.findBackward"]
+    }
+  ],
+  "vim.visualModeKeyBindingsNonRecursive": [
+    {
+      "before": ["<C-p>"],
+      "commands": ["workbench.action.quickOpen"]
+    },
+    {
+      "before": ["<C-b>"],
+      "commands": ["workbench.action.toggleSidebarVisibility"]
+    },
+    {
+      "after": ["g", "j"],
+      "before": ["j"]
+    },
+    {
+      "after": ["g", "k"],
+      "before": ["k"]
+    },
+    {
+      "after": ["g", "0"],
+      "before": ["0"]
+    },
+    {
+      "after": ["g", "^"],
+      "before": ["^"]
+    },
+    {
+      "after": ["g", "$"],
+      "before": ["$"]
+    }
+  ],
+  "window.menuBarVisibility": "toggle",
+  "window.titleBarStyle": "native",
+  "workbench.colorTheme": "Matchalk",
+  "workbench.tree.indent": 16,
+  "workbench.tree.renderIndentGuides": "always"
 }
