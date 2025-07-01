@@ -30,6 +30,7 @@
     "ilike",
     "lucide",
     "msal",
+    "nitropack",
     "nuxi",
     "nuxt",
     "nuxtui",
@@ -45,7 +46,8 @@
     "rrteal",
     "rryellow",
     "sfdark",
-    "sfnuxtlayer"
+    "sfnuxtlayer",
+    "vueuse"
   ],
   "editor.acceptSuggestionOnCommitCharacter": false,
   "editor.autoClosingBrackets": "never",
@@ -61,12 +63,48 @@
   "editor.lineNumbers": "relative",
   "editor.renderWhitespace": "none",
   "editor.rulers": [88],
+  "editor.tokenColorCustomizations": {
+    "[Matchalk]": {
+      "textMateRules": [
+        {
+          "scope": [
+            "variable.parameter",
+            "parameter.variable",
+            "meta.function.parameter variable",
+            "source.rust meta.type_params.rust"
+          ],
+          "settings": {
+            // "foreground": "#ff819f"
+            "foreground": "#ee809a"
+          }
+        },
+        {
+          "scope": "meta.attribute punctuation.definition.string",
+          "settings": {
+            // "foreground": "#ff819f"
+            "foreground": "#ee809a"
+          }
+        },
+        {
+          "scope": [
+            "meta.link punctuation.definition.string",
+            "meta.image punctuation.definition.string"
+          ],
+          "settings": {
+            // "foreground": "#ff819f"
+            "foreground": "#ee809a"
+          }
+        }
+      ],
+      // "variables": "#D1DED3"
+      "variables": "#c7d4c9"
+    }
+  },
   "editor.wordWrapColumn": 88,
   "git.autofetch": true,
   "git.blame.editorDecoration.enabled": true,
   "git.confirmSync": false,
   "git.replaceTagsWhenPull": true,
-  "github.copilot.nextEditSuggestions.enabled": true,
   "leap.whiteSpacesOnlyMatchNewLine": true,
   "vim.normalModeKeyBindingsNonRecursive": [
     {
@@ -138,6 +176,14 @@
   ],
   "window.menuBarVisibility": "toggle",
   "window.titleBarStyle": "native",
+  "workbench.colorCustomizations": {
+    "[Matchalk]": {
+      "diffEditor.insertedTextBorder": "default",
+      "diffEditor.removedTextBorder": "default",
+      // "editor.foreground": "#D1DED3"
+      "editor.foreground": "#c7d4c9"
+    }
+  },
   "workbench.colorTheme": "Matchalk",
   "workbench.tree.indent": 16,
   "workbench.tree.renderIndentGuides": "always"
