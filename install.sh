@@ -368,6 +368,7 @@ yoavbls.pretty-ts-errors
 ms-vscode.vscode-speech
 lucafalasco.matcha
 lucafalasco.matchalk
+github.vscode-github-actions
 "
 for extension in $extensions; do
     code --install-extension "$extension"

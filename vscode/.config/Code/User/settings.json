@@ -75,14 +75,14 @@
           ],
           "settings": {
             // "foreground": "#ff819f"
-            "foreground": "#ee809a"
+            "foreground": "#e08198"
           }
         },
         {
           "scope": "meta.attribute punctuation.definition.string",
           "settings": {
             // "foreground": "#ff819f"
-            "foreground": "#ee809a"
+            "foreground": "#e08198"
           }
         },
         {
@@ -92,7 +92,7 @@
           ],
           "settings": {
             // "foreground": "#ff819f"
-            "foreground": "#ee809a"
+            "foreground": "#e08198"
           }
         }
       ],
@@ -186,5 +186,6 @@
   },
   "workbench.colorTheme": "Matchalk",
   "workbench.tree.indent": 16,
-  "workbench.tree.renderIndentGuides": "always"
+  "workbench.tree.renderIndentGuides": "always",
+  "github.copilot.nextEditSuggestions.enabled": true
 }
